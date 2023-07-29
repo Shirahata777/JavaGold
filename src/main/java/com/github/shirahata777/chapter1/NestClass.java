@@ -1,6 +1,5 @@
 package com.github.shirahata777.chapter1;
 
-
 /* 
  * ネストクラス
  *  ・インナークラス
@@ -8,7 +7,11 @@ package com.github.shirahata777.chapter1;
  *  ・ローカルクラス
  *  ・匿名クラス
 */
-public class NestClass {
+
+enum EnumTest {
+    A,B,C;
+}
+public class NestClass implements Sample {
 
     private int num = 2;
     public String str = "a";
@@ -19,7 +22,7 @@ public class NestClass {
         public void test() {
             System.out.println("インナークラステスト！");
 
-            // 
+            //
             System.out.println(num);
             System.out.println(str);
             System.out.println(staticNum);
@@ -39,8 +42,9 @@ public class NestClass {
     }
 
     public static void TestMethod() {
+        // ローカルクラス
         class LocalClass {
-            public void test (){
+            public void test() {
                 System.out.println("ローカルクラステスト！");
             }
         }
@@ -49,7 +53,33 @@ public class NestClass {
         new LocalClass().test();
     }
 
+    // 匿名クラス
+    Runnable run = new Runnable() {
+        @Override
+        public void run() {
+            System.out.println("匿名クラス");
+        }
+    };
 
+    // 匿名クラスにはコンストラクターを設定できない
+    // Sample sample = new Sample() {
+
+    // public Sample() {
+    // System.out.println("匿名クラス");
+    // };
+
+    // };
+
+    public static void execute() {
+        System.out.println("テスト2");
+    };
+
+    // デフォルトメソッドのオーバーライドについて
+    @Override
+    public void test() {
+        Sample.super.test();
+
+    }
 
     public static void main(String[] args) {
         // インナークラス内のメソッド実行方法
@@ -60,6 +90,16 @@ public class NestClass {
 
         // ローカルクラス実行方法
         NestClass.TestMethod();
+
+        // インターフェースのメソッド
+        Sample.execute();
+
+        // 同ファイル内のメソッド
+        execute();
+
+        // Enum内のインスタンスの取得方法
+        System.out.println(EnumTest.values()[0]);
+        System.out.println(EnumTest.valueOf("A"));
 
     }
 }
