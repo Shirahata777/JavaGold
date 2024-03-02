@@ -1,0 +1,10 @@
+
+// ファイルにセキュリティポリシーを適用する場合
+grant codebase "file:~"{
+    permission java.io.filePermission "/", "read";
+}
+
+// 全ての許可を与える場合
+grant {
+    permission java.io.filePermission "/", "read";
+}
