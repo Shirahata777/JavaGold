@@ -7,8 +7,6 @@ import java.util.stream.Stream;
 
 public class Sample {
 
-    
-
     public static void main(String[] args) throws Exception {
 
         // nullを入れるとエラーが発生する
@@ -28,9 +26,9 @@ public class Sample {
         // System.out.println(option3.orElse("テスト"));
 
         // Optionalが空の場合、「orElseGet」を使うことでSupploer型の関数を実行することも可
-        System.out.println(option3.orElseGet(() -> {
-            return "a";
-        }));
+        // System.out.println(option3.orElseGet(() -> {
+        //     return "a";
+        // }));
 
         // 「orElseThrow」を使うことで例外を発生させることも可
         // System.out.println(option3.orElseThrow(() -> new Exception()));
@@ -39,32 +37,32 @@ public class Sample {
         // option3.ifPresent((str) -> System.out.println(str));
 
         // Optionalが空の場合にも自国する場合は、「ifPresentOrElse」を使う
-        option2.ifPresentOrElse((str)->System.out.println(str), ()->System.out.println("空"));
+        // option2.ifPresentOrElse((str) -> System.out.println(str), () -> System.out.println("空"));
 
         // 並列ストリーム
-        List<String> list1 = Arrays.asList("a","b","c","d","e");
-        List<Integer> list2 = Arrays.asList(3,2,1,10,9);
+        List<String> list1 = Arrays.asList("a", "b", "c", "d", "e");
+        List<Integer> list2 = Arrays.asList(3, 2, 1, 10, 9);
         Stream<String> stream = list1.parallelStream();
-        // stream.forEach(System.out::println); 
+        // stream.forEach(System.out::println);
 
         // ランダムな値を取得「findAny()」
         // stream.findAny().ifPresent(System.out::println);
 
         // 初めの値を取得
-         stream.findFirst().ifPresent(System.out::println);
+        // stream.findFirst().ifPresent(System.out::println);
 
-        //  ソート
-         list2.stream().sorted((a,b)-> {
-            if (a > b) return 1;
-            if (b > a) return -1;
-            return 0;
+        // ソート
+        // list2.stream().sorted((a, b) -> {
+        //     if (a > b)
+        //         return 1;
+        //     if (b > a)
+        //         return -1;
+        //     return 0;
 
-         }).forEach(System.out::println);
-        
-         
-         Optional<Integer> result = list2.stream().max((a,b) -> a.compareTo(b));
-         result.ifPresent(System.out::println);
+        // }).forEach(System.out::println);
 
+        Optional<Integer> result = list2.stream().max((a, b) -> a.compareTo(b));
+        // result.ifPresent(System.out::println);
 
     }
 
