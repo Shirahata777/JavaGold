@@ -2,8 +2,13 @@ package com.github.shirahata777.chapter4;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import org.jcp.xml.dsig.internal.MacOutputStream;
 
 public class Sample {
 
@@ -63,6 +68,44 @@ public class Sample {
 
         Optional<Integer> result = list2.stream().max((a, b) -> a.compareTo(b));
         // result.ifPresent(System.out::println);
+
+
+        List<Item> list3 = Arrays.asList(
+            new Item(1, ItemType.BOOK,"Java",1980),
+            new Item(1, ItemType.BOOK,"Ruby",2000),
+            new Item(1, ItemType.DVD,"Test",1000),
+            new Item(1, ItemType.MAGAZINE,"Python",4322)
+        );
+
+        // リストで取り出したい時
+        List<Item> bookList = list3.stream().filter(item -> item.getType() == ItemType.BOOK).collect(Collectors.toList());
+        // Setで取り出したい時
+        Set<Item> bookSetList = list3.stream().filter(item -> item.getType() == ItemType.BOOK).collect(Collectors.toSet());
+        // Mapで取り出したい時
+        Map<String, Item> bookSMap = list3.stream().filter(item -> item.getType() == ItemType.BOOK).collect(Collectors.toMap(
+            Item::getName,
+            item -> item
+        ));
+
+        // グルーピング
+        Map<ItemType, List<Item>> group = list3.stream().collect(Collectors.groupingBy(Item::getType));
+        // System.out.println(group);
+
+        // フィールドごとに合計値を計算
+        Map<ItemType, Integer> sum = list3.stream().collect(Collectors.groupingBy(
+            Item::getType,
+            Collectors.summingInt(Item::getPrice)));
+        // System.out.println(sum);
+
+        // フィールドごとに平均値を計算
+        Map<ItemType, Double> average = list3.stream().collect(Collectors.groupingBy(
+            Item::getType,
+            Collectors.averagingInt(Item::getPrice)));
+        // System.out.println(average);
+
+        // 条件によってグルーピング（条件通りならtrue それ以外はfalse）
+        Map<Boolean, List<Item>> partition = list3.stream().collect(Collectors.partitioningBy(item -> item.getPrice() >= 2000));
+        // System.out.println(partition);
 
     }
 
