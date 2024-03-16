@@ -103,7 +103,7 @@ public class Sample {
             Collectors.averagingInt(Item::getPrice)));
         // System.out.println(average);
 
-        // 条件によってグルーピング（条件通りならtrue それ以外はfalse）
+        // 条件によってグルーピング（条件通りならtrue それ以外はfalseで分類）
         Map<Boolean, List<Item>> partition = list3.stream().collect(Collectors.partitioningBy(item -> item.getPrice() >= 2000));
         // System.out.println(partition);
 
