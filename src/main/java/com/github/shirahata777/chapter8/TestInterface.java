@@ -19,7 +19,7 @@ import java.lang.annotation.Target;
 // @Retentionでアノテーションの保持期間を指定可能
 // 
 // 実行時まで
-// @Retention(RetentionPolicy.RUNTIME)
+// @Retention(RetentionPolicy.CLASS)
 // 
 // クラスファイルには残るが、実行時に消える
 // @Retention(RetentionPolicy.RUNTIME)

@@ -46,8 +46,8 @@ public class CollectionTest {
         Value<?> v2 = new Value("Hello");
 
         // nunllしか渡せない（コンパイルエラー）
-
         // v2.setValue("sample");
+        // 以下はコンパイルエラーにならない
         v2.setValue(null);
 
     }
