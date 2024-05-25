@@ -31,7 +31,7 @@ public class Sample5 {
 
         // ファイルを作成
         if (Files.exists(path2) == false) {
-            // すでにファイルが存在する場合は、FileAlreadyExistsExceptionガスローされる
+            // すでにファイルが存在する場合は、FileAlreadyExistsExceptionがスローされる
             Files.createFile(path2);
         }
 

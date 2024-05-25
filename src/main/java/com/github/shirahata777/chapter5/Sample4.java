@@ -15,7 +15,7 @@ public class Sample4 {
 
         File file = new File(ser);
 
-        // ディレクトリ作成
+        // ファイル作成
         if (file.exists() == false) {
             file.createNewFile();
         }

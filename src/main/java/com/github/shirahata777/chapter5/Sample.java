@@ -16,14 +16,14 @@ public class Sample {
 
         File dir = new File(filePath);
 
-        // ファイル作成
+        // ディレクトリ作成
         if (dir.exists() == false) {
             dir.mkdir();
         }
 
         File file = new File(filePath + "data.txt");
 
-        // ディレクトリ作成
+        // ファイル作成
         if (file.exists() == false) {
             file.createNewFile();
         }
