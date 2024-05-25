@@ -39,7 +39,7 @@ public class Sample {
                 ps.setInt(1, Integer.parseInt(id));
                 // ResultSetも解放してあげる必要がある（DBとのコネクションは解除されない）
                 try (ResultSet rs = ps.executeQuery()) {
-                    // rs.nect()を利用しないと値を取得できない（カーソルが動いていない状態）
+                    // rs.next()を利用しないと値を取得できない（カーソルが動いていない状態）
                     while (rs.next()) {
                         System.out.println(rs.getInt("url"));
                     }
@@ -94,7 +94,7 @@ public class Sample {
             throw new RuntimeException(e);
         }
 
-        // 複数のSQ Lを実行するときはaddBatchを利用する
+        // 複数のSQLを実行するときはexecuteBatchを利用する
         try (Connection con3 = DriverManager.getConnection(url);) {
             try (PreparedStatement ps = con3.prepareStatement(sql3);) {
                 String[] list = {"apple","banana"};
